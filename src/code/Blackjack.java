@@ -7,10 +7,6 @@ public class Blackjack
     {
         ArrayList<Baralho> baralho = CriaBaralho.criaeEmbaralhaBaralho();
 
-        System.out.println(baralho.get(0).valor+" "+baralho.get(0).naipe);
-
-        baralho.remove(0);
-
-        System.out.println(baralho.get(0).valor+" "+baralho.get(0).naipe);
+        new JogaJogo(baralho);
     }
 }

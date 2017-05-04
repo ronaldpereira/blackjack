@@ -3,6 +3,8 @@ import java.util.Collections;
 
 public class CriaBaralho
 {
+    private int IDtopo = 0;
+
     public static ArrayList<Baralho> criaeEmbaralhaBaralho()
     {
         String nomedacarta;
@@ -53,5 +55,10 @@ public class CriaBaralho
         Collections.shuffle(baralho);
 
         return baralho;
+    }
+
+    public void incrementaTopo()
+    {
+        this.IDtopo++;
     }
 }

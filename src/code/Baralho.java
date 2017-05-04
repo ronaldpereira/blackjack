@@ -1,8 +1,8 @@
 public class Baralho
 {
     private String nome;
-    public String naipe; // TODO private
-    public int valor; // TODO private
+    private String naipe;
+    private int valor;
 
     public void criaCarta(String nome, String naipe)
     {
