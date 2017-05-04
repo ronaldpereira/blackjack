@@ -8,4 +8,9 @@ public class JogaJogo
     {
         this.baralho = baralho;
     }
+
+    public static void teste() throws Exception
+    {
+        Jogador.saldoInicial();
+    }
 }
