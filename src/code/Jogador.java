@@ -6,10 +6,10 @@ public class Jogador
 {
     private ArrayList<Integer> IDcartas;
     private String nomeJogador;
-    private static double saldo;
-    private static BufferedReader reader;
+    private double saldo;
+    private BufferedReader reader;
 
-    public static void saldoInicial() throws Exception
+    public void saldoInicial() throws Exception
     {
         System.out.print("Insira o saldo inicial do(s) jogador(es): R$ ");
         reader = new BufferedReader(new InputStreamReader(System.in));
@@ -19,10 +19,15 @@ public class Jogador
         System.out.println("Saldo inicial: R$"+saldo);
     }
 
-    public static void pegaNomeJogador(int id) throws Exception
+    public void pegaNomeJogador(int id) throws Exception
     {
         System.out.print("Insira o nome do jogador "+id+" : ");
         reader = new BufferedReader(new InputStreamReader(System.in));
         this.nomeJogador = reader.readLine();
+    }
+
+    public String retornaNomeJogador()
+    {
+        return this.nomeJogador;
     }
 }
