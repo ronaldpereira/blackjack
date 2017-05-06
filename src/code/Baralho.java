@@ -28,4 +28,14 @@ public class Baralho
             this.valor = Integer.parseInt(nome);
         }
     }
+
+    public int retornaValor()
+    {
+        return valor;
+    }
+
+    public String retornaNomeeNaipe()
+    {
+        return nome+" of "+naipe;
+    }
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class CriaBaralho
 {
@@ -52,7 +53,16 @@ public class CriaBaralho
             }
         }
 
-        Collections.shuffle(baralho);
+        Random rng = new Random();
+        int aux = rng.nextInt(10000);
+        System.out.println(aux);
+
+        for (int i = 0; i < aux; i++)
+        {
+            Collections.shuffle(baralho);
+        }
+
+        System.out.println(baralho.get(0).retornaNomeeNaipe());
 
         return baralho;
     }
