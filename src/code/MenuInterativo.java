@@ -3,9 +3,9 @@ import java.io.InputStreamReader;
 
 public class MenuInterativo
 {
-    Jogador[] jogador;
+    private Jogador[] jogador;
     private int numJogadores;
-    BufferedReader reader;
+    private BufferedReader reader;
 
     public void apresentacao()
     {
@@ -24,10 +24,11 @@ public class MenuInterativo
         reader = new BufferedReader(new InputStreamReader(System.in));
         numJogadores = Integer.parseInt(reader.readLine());
 
-        criaJogadores(numJogadores);
+        this.criaJogadores(numJogadores);
+        this.saldoInicial(numJogadores);
 
-        for (int i = 1; i <= numJogadores; i++)
-            System.out.println(this.jogador[i].retornaNomeJogador());
+        for (int i = 1; i <= numJogadores; i++) // TODO print de nome dos jogadores teste
+            System.out.println("Nome do jogador "+i+" é "+this.jogador[i].retornaNomeJogador());
     }
 
     public void criaJogadores(int id) throws Exception
@@ -37,6 +38,18 @@ public class MenuInterativo
         {
             jogador[i] = new Jogador();
             jogador[i].pegaNomeJogador(i);
+        }
+    }
+
+    public void saldoInicial(int numJogadores) throws Exception
+    {
+        System.out.print("Insira o saldo inicial do(s) jogador(es): R$ ");
+        reader = new BufferedReader(new InputStreamReader(System.in));
+        double valor = Double.parseDouble(reader.readLine());
+
+        for(int i = 1; i <= numJogadores; i++)
+        {
+            this.jogador[i].aumentaSaldo(valor);
         }
     }
 

@@ -9,14 +9,24 @@ public class Jogador
     private double saldo;
     private BufferedReader reader;
 
-    public void saldoInicial() throws Exception
+    public void aumentaSaldo(double valor)
     {
-        System.out.print("Insira o saldo inicial do(s) jogador(es): R$ ");
-        reader = new BufferedReader(new InputStreamReader(System.in));
+        this.saldo += valor;
+    }
 
-        saldo = Double.parseDouble(reader.readLine());
+    public void diminuiSaldo(double valor)
+    {
+        this.saldo -= valor;
+    }
 
-        System.out.println("Saldo inicial: R$"+saldo);
+    public void pegaCarta(int id)
+    {
+        this.IDcartas.add(id);
+    }
+
+    public void descartaMao()
+    {
+        this.IDcartas.clear();
     }
 
     public void pegaNomeJogador(int id) throws Exception
@@ -29,5 +39,15 @@ public class Jogador
     public String retornaNomeJogador()
     {
         return this.nomeJogador;
+    }
+
+    public double retornaSaldo()
+    {
+        return this.saldo;
+    }
+
+    public ArrayList<Integer> retornaIDcartas()
+    {
+        return this.IDcartas;
     }
 }
