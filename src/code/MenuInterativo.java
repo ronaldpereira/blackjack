@@ -9,7 +9,7 @@ public class MenuInterativo
 
     public void apresentacao()
     {
-        System.out.println("Bem-vindo ao JackBlack 2017/2");
+        System.out.println("Bem-vindo ao JackBlackJack 2017/2");
         System.out.println("Autores: Marina Monteiro Moreira e Ronald Davi Rodrigues Pereira");
     }
 

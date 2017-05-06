@@ -6,6 +6,7 @@ public class Jogador
 {
     private ArrayList<Integer> IDcartas;
     private String nomeJogador;
+    private boolean isIA = false; // Flag para verificar se o jogador e uma inteligencia artificial
     private double saldo;
     private BufferedReader reader;
 
@@ -33,7 +34,16 @@ public class Jogador
     {
         System.out.print("Insira o nome do jogador "+id+" : ");
         reader = new BufferedReader(new InputStreamReader(System.in));
-        this.nomeJogador = reader.readLine();
+        String nome = reader.readLine();
+
+        if("IA".equals(nome))
+        {
+            this.nomeJogador = "Inteligencia Artificial "+id;
+            this.isIA = true;
+        }
+
+        else
+            this.nomeJogador = nome;
     }
 
     public String retornaNomeJogador()

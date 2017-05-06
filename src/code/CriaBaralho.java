@@ -62,7 +62,7 @@ public class CriaBaralho
             Collections.shuffle(baralho); // Embaralha randomicamente o baralho
         }
 
-        System.out.println("Topo do baralho é "+baralho.get(0).retornaNomeeNaipe()); // TODO print de nome e naipe do topo teste
+        System.out.println("Topo do baralho e "+baralho.get(0).retornaNomeeNaipe()); // TODO print de nome e naipe do topo teste
 
         return baralho;
     }
