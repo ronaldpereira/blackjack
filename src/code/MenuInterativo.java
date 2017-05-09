@@ -53,10 +53,16 @@ public class MenuInterativo
         }
     }
 
-    public void executaMenu() throws Exception
+    public Jogador[] executaMenu() throws Exception
     {
         this.apresentacao();
         this.interage();
+
+        return jogador;
     }
 
+    public int retornaNumJogadores()
+    {
+        return this.numJogadores;
+    }
 }

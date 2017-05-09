@@ -10,6 +10,27 @@ public class Jogador
     private double saldo;
     private BufferedReader reader;
 
+    public void fazJogada() throws Exception
+    {
+        String option = "";
+        InteligenciaArtificial IA = new InteligenciaArtificial();
+        if(isIA)
+        {
+            System.out.print(nomeJogador+", qual a sua jogada? <hit/double/split/stand>: ");
+            IA.tomaDecisao();
+        }
+
+        else
+        {
+            while(!("stand".equals(option)))
+            {
+                System.out.print(nomeJogador+", qual a sua jogada? <hit/double/split/stand>: ");
+                reader = new BufferedReader(new InputStreamReader(System.in));
+                option = reader.readLine();
+            }
+        }
+    }
+
     public void aumentaSaldo(double valor)
     {
         this.saldo += valor;

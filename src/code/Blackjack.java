@@ -5,11 +5,9 @@ public class Blackjack
 {
     public static void main(String[] args) throws Exception
     {
-        MenuInterativo menu = new MenuInterativo();
-        menu.executaMenu();
-
         ArrayList<Baralho> baralho = CriaBaralho.criaeEmbaralhaBaralho();
 
         JogaJogo jogajogo = new JogaJogo(baralho);
+        jogajogo.jogada();
     }
 }
