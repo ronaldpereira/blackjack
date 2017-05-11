@@ -4,15 +4,15 @@ import java.io.InputStreamReader;
 
 public class Jogador
 {
-    private ArrayList<Integer> IDcartas = new ArrayList<Integer>();
-    private String nomeJogador;
+    private ArrayList<Integer> IDcartas = new ArrayList<Integer>(); // Array de inteiros para guardar os IDs das cartas da mao do jogador
+    private String nomeJogador; // String para guardar o nome do jogador
     private boolean isIA = false; // Flag para verificar se o jogador e uma inteligencia artificial
-    private double saldo;
-    private double aposta = 0;
-    private int numDeA = 0;
-    private int valorMao = 0;
-    private int numCartas = 0;
-    private BufferedReader reader;
+    private double saldo; // Guarda o saldo restante do jogador
+    private double aposta = 0; // Guarda a aposta do jogador
+    private int numDeA = 0; // Guarda o numero de As na mao do jogador
+    private int valorMao = 0; // Guarda o valor da mao do jogador
+    private int numCartas = 0; // Guarda o numero de cartas na mao do jogador
+    private BufferedReader reader; // Leitor da entrada
 
     public void fazJogada(ArrayList<Baralho> baralho, int id) throws Exception
     {
@@ -34,12 +34,6 @@ public class Jogador
         }
     }
 
-    public void daDouble()
-    {
-        this.saldo -= this.aposta;
-        this.aposta *= 2;
-    }
-
     public void fazAposta() throws Exception
     {
         if(this.saldo >= 10)
@@ -56,6 +50,12 @@ public class Jogador
 
         else
             System.out.print("\n"+this.nomeJogador+", seu saldo e insuficiente.\nSaldo atual e R$ "+this.saldo+"\n\n");
+    }
+
+    public void daDouble()
+    {
+        this.saldo -= this.aposta;
+        this.aposta *= 2;
     }
 
     public void aumentaSaldo(double valor)
