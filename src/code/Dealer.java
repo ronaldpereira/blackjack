@@ -2,27 +2,28 @@ import java.util.ArrayList;
 
 public class Dealer
 {
-    private ArrayList<Integer> IDcartas;
-    private int soma = 0;
+    private ArrayList<Integer> IDcartas = new ArrayList<Integer>();
+    private int valorMao = 0;
 
-    public void puxaCarta(int ID, int valor)
+    public void pegaCarta(int id, int valor)
     {
-        this.IDcartas.add(ID);
-        this.soma += valor;
+        this.IDcartas.add(id);
+
+        this.valorMao += valor;
     }
 
     public void descartaMao()
     {
         this.IDcartas.clear();
-        this.soma = 0;
+        this.valorMao = 0;
     }
 
-    public int exibeSoma()
+    public int retornaValorMao()
     {
-        return this.soma;
+        return this.valorMao;
     }
 
-    public ArrayList<Integer> exibeMao()
+    public ArrayList<Integer> retornaIDcartas()
     {
         return this.IDcartas;
     }

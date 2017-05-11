@@ -4,15 +4,17 @@ import java.io.InputStreamReader;
 
 public class JogaJogo
 {
-    private Jogador[] jogador;
-    private ArrayList<Baralho> baralho;
+    private static Jogador[] jogador;
+    private static ArrayList<Baralho> baralho;
+    private static Dealer dealer;
     private int numJogadores;
     private static BufferedReader reader;
     private static String option;
 
-    public void atribuiBaralho(ArrayList<Baralho> baralho)
+    public void atribuiBaralho()
     {
-        this.baralho = baralho;
+        CriaBaralho criadorBaralho = new CriaBaralho();
+        baralho = criadorBaralho.criaeEmbaralhaBaralho();
     }
 
     public void jogada() throws Exception
@@ -20,30 +22,210 @@ public class JogaJogo
         MenuInterativo menu = new MenuInterativo();
         jogador = menu.executaMenu();
         numJogadores = menu.retornaNumJogadores();
+        atribuiBaralho();
 
-        for(int i = 1; i <= numJogadores; i++)
-            jogador[i].fazJogada(i);
+        int numRodadas = 0;
+        String continuar = "sim";
+        while(true)
+        {
+            if(verificaSaldoJogadores())
+            {
+                numRodadas++;
+                if(numRodadas == 10)
+                {
+                    System.out.print("\nO baralho esta sendo recomposto e embaralhado...\n");
+                    atribuiBaralho();
+                    numRodadas = 0;
+                }
+
+                for(int i = 1; i <= numJogadores; i++)
+                    jogador[i].fazAposta();
+
+                dealer = new Dealer();
+                dealer.pegaCarta(0, baralho.get(0).retornaValor());
+                System.out.print("\nInicio da rodada:\n\nO Dealer vira na mesa a carta "+baralho.get(0).retornaNomeeNaipe()+"\n\nO valor da mao do Dealer e "+baralho.get(0).retornaValor()+"\n");
+
+                for(int i = 1; i <= numJogadores; i++)
+                {
+                    if(jogador[i].retornaAposta() > 0)
+                        jogador[i].fazJogada(baralho, i);
+                }
+
+                if(verificaMaoJogadores())
+                {
+                    System.out.print("\nVez do Dealer\n");
+                    dealerTerminaRodada();
+                }
+
+                distribuiPremios();
+
+                System.out.print("\nDeseja jogar mais uma rodada? <sim, nao>: ");
+                reader = new BufferedReader(new InputStreamReader(System.in));
+                continuar = reader.readLine();
+
+                if("sim".equals(continuar))
+                {
+                    preparaNovaRodada();
+                }
+
+                else if("nao".equals(continuar))
+                {
+                    imprimeSaldos();
+                    break;
+                }
+            }
+
+            else
+            {
+                System.out.println("O jogo terminou por insuficiencia de saldo dos jogadores");
+                imprimeSaldos();
+                break;
+            }
+        }
     }
 
-    public String decisao(int id) throws Exception
+    public void imprimeSaldos()
     {
+        System.out.println("Saldo final dos jogadores:");
+
+        for(int i = 1; i <= numJogadores; i++)
+            System.out.println(jogador[i].retornaNomeJogador()+" : R$ "+jogador[i].retornaSaldo());
+
+        System.out.println("Obrigado por jogar JackBlack 2017/1!");
+    }
+
+    public boolean verificaMaoJogadores()
+    {
+        for(int i = 1; i <= numJogadores; i++)
+        {
+            if(jogador[i].retornaValorMao() <= 21)
+                return true;
+        }
+
+        return false;
+    }
+
+    public boolean verificaSaldoJogadores()
+    {
+        for(int i = 1; i <= numJogadores; i++)
+        {
+            if(jogador[i].retornaSaldo() >= 10)
+                return true;
+        }
+
+        return false;
+    }
+
+    public void distribuiPremios()
+    {
+        int maoDealer = dealer.retornaValorMao();
+        int auxValorMao;
+
+        if(maoDealer > 21) // Se o dealer estourou a mao, todos os jogadores ganham
+            maoDealer = 0;
+
+        System.out.print("\n\nResultados da rodada:\n");
+
+        for(int i = 1; i <= numJogadores; i++)
+        {
+            if(jogador[i].retornaAposta() > 0)
+            {
+                auxValorMao = jogador[i].retornaValorMao();
+
+                if(jogador[i].retornaValorMao() > 21)
+                    jogador[i].estourouMao();
+
+                if(jogador[i].retornaValorMao() > maoDealer)
+                {
+                    System.out.print("\n"+jogador[i].retornaNomeJogador()+" ganhou R$ "+jogador[i].retornaAposta()*2);
+                    jogador[i].aumentaSaldo(jogador[i].retornaAposta()*2);
+                }
+
+                else if(jogador[i].retornaValorMao() == maoDealer)
+                {
+                    System.out.print("\nO Dealer devolveu R$ "+jogador[i].retornaAposta()+" da aposta para "+jogador[i].retornaNomeJogador());
+                    jogador[i].aumentaSaldo(jogador[i].retornaAposta());
+                }
+
+                else
+                    System.out.print("\n"+jogador[i].retornaNomeJogador()+" perdeu");
+
+                System.out.println(" com uma mao de valor "+auxValorMao);
+            }
+        }
+    }
+
+    public void dealerTerminaRodada()
+    {
+        while(dealer.retornaValorMao() < 17)
+        {
+            for(int i = 1; ; i++)
+            {
+                if(!(baralho.get(i).retornaUso())) // Carta nao esta na mesa
+                {
+                    baralho.get(i).cartaPuxada();
+                    dealer.pegaCarta(i, baralho.get(i).retornaValor());
+                    System.out.println("Foi puxada a carta: "+baralho.get(i).retornaNomeeNaipe());
+                    break;
+                }
+            }
+            System.out.println(dealer.retornaIDcartas());
+            System.out.println("O valor da mao do dealer e "+dealer.retornaValorMao());
+        }
+    }
+
+    public void preparaNovaRodada()
+    {
+        for(int i = 1; i <= numJogadores; i++)
+            jogador[i].descartaMao();
+
+        dealer.descartaMao();
+
+        while(baralho.get(0).retornaUso())
+            baralho.remove(0);
+    }
+
+    public static String decisao(ArrayList<Baralho> baralho, int id) throws Exception
+    {
+        if(jogador[id].retornaNumCartas() == 0)
+        {
+            distribuiCartas(baralho, id);
+            System.out.println(jogador[id].retornaIDcartas());
+            System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
+        }
+
+        System.out.print(jogador[id].retornaNomeJogador()+", qual a sua jogada? <hit/double/split/stand>: ");
         reader = new BufferedReader(new InputStreamReader(System.in));
         option = reader.readLine();
 
         if("hit".equals(option))
         {
-            System.out.println("Entrou no hit");
-            distribuiCartas(id);
+            distribuiCartas(baralho, id);
+            System.out.println(jogador[id].retornaIDcartas());
+            System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
         }
 
         else if("stand".equals(option))
         {
-            System.out.println("Entrou no stand");
+            System.out.print("O valor da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n\n");
         }
 
         else if("double".equals(option))
         {
+            if(jogador[id].retornaSaldo() >= jogador[id].retornaAposta())
+            {
+                jogador[id].daDouble();
+                distribuiCartas(baralho, id);
+            }
 
+            else
+            {
+                System.out.println("\n"+jogador[id].retornaNomeJogador()+", seu saldo e insuficiente para dar double");
+                option = "";
+            }
+
+            System.out.println(jogador[id].retornaIDcartas());
+            System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
         }
 
         else if("split".equals(option))
@@ -51,17 +233,31 @@ public class JogaJogo
 
         }
 
+        if(jogador[id].retornaValorMao() == 21)
+        {
+            System.out.print("BlackJack de "+jogador[id].retornaNomeJogador()+"!"+"\n\n");
+            System.out.print("O valor final da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n\n");
+            option = "stand";
+        }
+
+        else if(jogador[id].retornaValorMao() > 21)
+        {
+            System.out.print("Perdeu! O valor final da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n\n");
+            option = "stand";
+        }
+
         return option;
     }
 
-    public void distribuiCartas(int id)
+    public static void distribuiCartas(ArrayList<Baralho> baralho, int id)
     {
-        for(int i = 0; ; i++)
+        for(int i = 1; ; i++)
         {
-            if(!(this.baralho.get(i).retornaUso())) // Carta nao esta na mesa
+            if(!(baralho.get(i).retornaUso())) // Carta nao esta na mesa
             {
-                this.baralho.get(i).cartaPuxada();
-                this.jogador[id].pegaCarta(i);
+                baralho.get(i).cartaPuxada();
+                jogador[id].pegaCarta(i, baralho.get(i).retornaValor());
+                System.out.println("Foi puxada a carta: "+baralho.get(i).retornaNomeeNaipe());
                 return;
             }
         }

@@ -9,13 +9,8 @@ public class MenuInterativo
 
     public void apresentacao()
     {
-        System.out.println("Bem-vindo ao JackBlack 2017/2");
+        System.out.println("Bem-vindo ao JackBlack 2017/1");
         System.out.println("Autores: Marina Monteiro Moreira e Ronald Davi Rodrigues Pereira");
-    }
-
-    public void interage() throws Exception
-    {
-        pegaNumJogadores();
     }
 
     public void pegaNumJogadores() throws Exception
@@ -29,9 +24,6 @@ public class MenuInterativo
 
         this.criaJogadores(numJogadores);
         this.saldoInicial(numJogadores);
-
-        for (int i = 1; i <= numJogadores; i++) // TODO print de nome dos jogadores teste
-            System.out.println("Nome do jogador "+i+" é "+this.jogador[i].retornaNomeJogador());
     }
 
     public void criaJogadores(int id) throws Exception
@@ -46,9 +38,13 @@ public class MenuInterativo
 
     public void saldoInicial(int numJogadores) throws Exception
     {
-        System.out.print("Insira o saldo inicial do(s) jogador(es): R$ ");
-        reader = new BufferedReader(new InputStreamReader(System.in));
-        double valor = Double.parseDouble(reader.readLine());
+        double valor = 0;
+        while(valor < 10)
+        {
+            System.out.print("Insira o saldo inicial do(s) jogador(es) (min. de R$ 10.00): R$ ");
+            reader = new BufferedReader(new InputStreamReader(System.in));
+            valor = Double.parseDouble(reader.readLine());
+        }
 
         for(int i = 1; i <= numJogadores; i++)
         {
@@ -59,7 +55,7 @@ public class MenuInterativo
     public Jogador[] executaMenu() throws Exception
     {
         this.apresentacao();
-        this.interage();
+        this.pegaNumJogadores();
 
         return jogador;
     }

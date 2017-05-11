@@ -16,7 +16,7 @@ public class Baralho
     {
         if("A".equals(nome))
         {
-            this.valor = 1;
+            this.valor = 11;
         }
 
         else if("J".equals(nome) || "Q".equals(nome) || "K".equals(nome))

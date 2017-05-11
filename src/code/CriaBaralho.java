@@ -56,8 +56,6 @@ public class CriaBaralho
 
         this.embaralhaBaralho();
 
-        System.out.println("Topo do baralho e "+baralho.get(0).retornaNomeeNaipe());
-
         return this.baralho;
     }
 
@@ -65,7 +63,6 @@ public class CriaBaralho
     {
         Random rng = new Random();
         int aux = rng.nextInt(10000); // Gera um inteiro randomico entre 0 e 10000
-        System.out.println("RNG = "+aux); // TODO print do RNG teste
 
         for (int i = 0; i < aux; i++)
         {
