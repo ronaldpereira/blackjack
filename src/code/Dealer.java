@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Dealer
 {
-    private ArrayList<Integer> IDcartas = new ArrayList<Integer>();
-    private int valorMao = 0;
+    private ArrayList<Integer> IDcartas = new ArrayList<Integer>(); // Array de inteiros para guardar os IDs das cartas da mao do jogador
+    private int valorMao = 0; // Guarda o valor da mao do jogador
 
     public void pegaCarta(int id, int valor)
     {

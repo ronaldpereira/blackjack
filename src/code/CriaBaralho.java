@@ -21,16 +21,16 @@ public class CriaBaralho
                 for(int naipe = 1; naipe <= 4; naipe++)
                 {
                     if(naipe == 1)
-                        naipedacarta = "Clubs";
+                        naipedacarta = "Paus";
 
                     else if(naipe == 2)
-                        naipedacarta = "Hearts";
+                        naipedacarta = "Copas";
 
                     else if(naipe == 3)
-                        naipedacarta = "Spades";
+                        naipedacarta = "Espadas";
 
                     else
-                        naipedacarta = "Diamonds";
+                        naipedacarta = "Ouros";
 
                     if(carta == 1)
                         nomedacarta = "A";

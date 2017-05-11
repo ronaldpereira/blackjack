@@ -4,12 +4,12 @@ import java.io.InputStreamReader;
 
 public class JogaJogo
 {
-    private static Jogador[] jogador;
-    private static ArrayList<Baralho> baralho;
-    private static Dealer dealer;
-    private int numJogadores;
-    private static BufferedReader reader;
-    private static String option;
+    private static Jogador[] jogador; // Vetor de jogadores
+    private static ArrayList<Baralho> baralho; // Array de objetos do tipo Baralho para guardar as cartas do baralho
+    private static Dealer dealer; // Dealer do jogo
+    private int numJogadores; // Guarda o numero de jogadores
+    private static BufferedReader reader; // Leitor da entrada
+    private static String option; // Guarda a opcao do jogador
 
     public void atribuiBaralho()
     {

@@ -1,9 +1,9 @@
 public class Baralho
 {
-    private String nome;
-    private String naipe;
-    private int valor;
-    private boolean isOnTheTable = false;
+    private String nome; // Guarda o nome da carta
+    private String naipe; // Guarda o nome da carta
+    private int valor; // Guarda o valor relativo a carta
+    private boolean isOnTheTable = false; // Flag para marcar se a carta esta na mesa ou nao
 
     public void criaCarta(String nome, String naipe)
     {

@@ -3,9 +3,9 @@ import java.io.InputStreamReader;
 
 public class MenuInterativo
 {
-    private Jogador[] jogador;
-    private int numJogadores = 7;
-    private BufferedReader reader;
+    private Jogador[] jogador; // Vetor de jogadores
+    private int numJogadores = 7; // Guarda o numero de jogadores
+    private BufferedReader reader; // Leitor da entrada
 
     public void apresentacao()
     {
