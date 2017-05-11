@@ -4,22 +4,22 @@ public class InteligenciaArtificial
     {
         if(verificaHit())
         {
-            System.out.print("hit");
+            System.out.print("hit\n");
         }
 
         else if(verificaStand())
         {
-            System.out.print("stand");
+            System.out.print("stand\n");
         }
 
         else if(verificaDouble())
         {
-            System.out.print("double");
+            System.out.print("double\n");
         }
 
         else if(verificaSplit())
         {
-            System.out.print("split");
+            System.out.print("split\n");
         }
     }
 

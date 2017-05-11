@@ -5,13 +5,14 @@ import java.util.Random;
 public class CriaBaralho
 {
     private int IDtopo = 0;
+    private ArrayList<Baralho> baralho;
 
-    public static ArrayList<Baralho> criaeEmbaralhaBaralho()
+    public ArrayList<Baralho> criaeEmbaralhaBaralho()
     {
         String nomedacarta;
         String naipedacarta;
 
-        ArrayList<Baralho> baralho = new ArrayList<Baralho>();
+        this.baralho = new ArrayList<Baralho>();
 
         for(int deck = 1; deck <= 6; deck++)
         {
@@ -53,18 +54,23 @@ public class CriaBaralho
             }
         }
 
+        this.embaralhaBaralho();
+
+        System.out.println("Topo do baralho e "+baralho.get(0).retornaNomeeNaipe());
+
+        return this.baralho;
+    }
+
+    private void embaralhaBaralho()
+    {
         Random rng = new Random();
         int aux = rng.nextInt(10000); // Gera um inteiro randomico entre 0 e 10000
         System.out.println("RNG = "+aux); // TODO print do RNG teste
 
         for (int i = 0; i < aux; i++)
         {
-            Collections.shuffle(baralho); // Embaralha randomicamente o baralho
+            Collections.shuffle(this.baralho); // Embaralha randomicamente o baralho
         }
-
-        System.out.println("Topo do baralho e "+baralho.get(0).retornaNomeeNaipe()); // TODO print de nome e naipe do topo teste
-
-        return baralho;
     }
 
     public void incrementaTopo()

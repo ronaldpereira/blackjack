@@ -3,6 +3,7 @@ public class Baralho
     private String nome;
     private String naipe;
     private int valor;
+    private boolean isOnTheTable = false;
 
     public void criaCarta(String nome, String naipe)
     {
@@ -29,6 +30,11 @@ public class Baralho
         }
     }
 
+    public void cartaPuxada()
+    {
+        this.isOnTheTable = true;
+    }
+
     public int retornaValor()
     {
         return valor;
@@ -37,5 +43,10 @@ public class Baralho
     public String retornaNomeeNaipe()
     {
         return nome+" of "+naipe;
+    }
+
+    public boolean retornaUso()
+    {
+        return this.isOnTheTable;
     }
 }

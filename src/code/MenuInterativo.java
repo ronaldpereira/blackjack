@@ -4,12 +4,12 @@ import java.io.InputStreamReader;
 public class MenuInterativo
 {
     private Jogador[] jogador;
-    private int numJogadores;
+    private int numJogadores = 7;
     private BufferedReader reader;
 
     public void apresentacao()
     {
-        System.out.println("Bem-vindo ao JackBlackJack 2017/2");
+        System.out.println("Bem-vindo ao JackBlack 2017/2");
         System.out.println("Autores: Marina Monteiro Moreira e Ronald Davi Rodrigues Pereira");
     }
 
@@ -20,9 +20,12 @@ public class MenuInterativo
 
     public void pegaNumJogadores() throws Exception
     {
-        System.out.print("Insira o numero de jogadores: ");
-        reader = new BufferedReader(new InputStreamReader(System.in));
-        numJogadores = Integer.parseInt(reader.readLine());
+        while(numJogadores > 6)
+        {
+            System.out.print("Insira o numero de jogadores (max. 6 jogadores): ");
+            reader = new BufferedReader(new InputStreamReader(System.in));
+            numJogadores = Integer.parseInt(reader.readLine());
+        }
 
         this.criaJogadores(numJogadores);
         this.saldoInicial(numJogadores);
