@@ -4,8 +4,7 @@ import java.util.Random;
 
 public class CriaBaralho
 {
-    private int IDtopo = 0;
-    private ArrayList<Baralho> baralho;
+    private ArrayList<Baralho> baralho; // Array de objetos do tipo Baralho para guardar as cartas do baralho
 
     public ArrayList<Baralho> criaeEmbaralhaBaralho()
     {
