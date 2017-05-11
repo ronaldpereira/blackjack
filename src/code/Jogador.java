@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Jogador // TODO transformar em classe abstrata e criar seus filhos: IA, dealer e participante
+public class Jogador
 {
     private ArrayList<Integer> IDcartas = new ArrayList<Integer>();
     private String nomeJogador;
