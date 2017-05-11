@@ -86,12 +86,12 @@ public class JogaJogo
 
     public void imprimeSaldos()
     {
-        System.out.println("Saldo final dos jogadores:");
+        System.out.print("\n\nSaldo final dos jogadores:\n");
 
         for(int i = 1; i <= numJogadores; i++)
             System.out.println(jogador[i].retornaNomeJogador()+" : R$ "+jogador[i].retornaSaldo());
 
-        System.out.println("Obrigado por jogar JackBlack 2017/1!");
+        System.out.print("\n\nObrigado por jogar JackBlack 2017/1!\n");
     }
 
     public boolean verificaMaoJogadores()

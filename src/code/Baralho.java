@@ -14,12 +14,12 @@ public class Baralho
 
     private void atribuiValor(String nome)
     {
-        if("A".equals(nome))
+        if("As".equals(nome))
         {
             this.valor = 11;
         }
 
-        else if("J".equals(nome) || "Q".equals(nome) || "K".equals(nome))
+        else if("Valete".equals(nome) || "Rainha".equals(nome) || "Rei".equals(nome))
         {
             this.valor = 10;
         }
@@ -42,7 +42,7 @@ public class Baralho
 
     public String retornaNomeeNaipe()
     {
-        return nome+" of "+naipe;
+        return nome+" de "+naipe;
     }
 
     public boolean retornaUso()

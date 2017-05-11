@@ -33,16 +33,16 @@ public class CriaBaralho
                         naipedacarta = "Ouros";
 
                     if(carta == 1)
-                        nomedacarta = "A";
+                        nomedacarta = "As";
 
                     else if(carta == 11)
-                        nomedacarta = "J";
+                        nomedacarta = "Valete";
 
                     else if(carta == 12)
-                        nomedacarta = "Q";
+                        nomedacarta = "Rainha";
 
                     else if(carta == 13)
-                        nomedacarta = "K";
+                        nomedacarta = "Rei";
 
                     else
                         nomedacarta = Integer.toString(carta);
@@ -68,10 +68,5 @@ public class CriaBaralho
         {
             Collections.shuffle(this.baralho); // Embaralha randomicamente o baralho
         }
-    }
-
-    public void incrementaTopo()
-    {
-        this.IDtopo++;
     }
 }
