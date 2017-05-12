@@ -21,7 +21,7 @@ public class Jogador
         InteligenciaArtificial IA = new InteligenciaArtificial();
         if(isIA)
         {
-            System.out.print(this.nomeJogador+", qual a sua jogada? <hit/double/split/stand>: ");
+            System.out.print("\n"+this.nomeJogador+", qual a sua jogada? <hit/double/split/stand>: ");
             IA.tomaDecisao();
         }
 

@@ -194,7 +194,7 @@ public class JogaJogo
             System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
         }
 
-        System.out.print(jogador[id].retornaNomeJogador()+", qual a sua jogada? <hit/double/split/stand>: ");
+        System.out.print("\n"+jogador[id].retornaNomeJogador()+", qual a sua jogada? <hit/double/split/stand>: ");
         reader = new BufferedReader(new InputStreamReader(System.in));
         option = reader.readLine();
 
