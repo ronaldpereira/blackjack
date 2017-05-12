@@ -41,9 +41,7 @@ public class JogaJogo
                 for(int i = 1; i <= numJogadores; i++)
                     jogador[i].fazAposta();
 
-                dealer = new Dealer();
-                dealer.pegaCarta(0, baralho.get(0).retornaValor());
-                System.out.print("\nInicio da rodada:\n\nO Dealer vira na mesa a carta "+baralho.get(0).retornaNomeeNaipe()+"\n\nO valor da mao do Dealer e "+baralho.get(0).retornaValor()+"\n");
+                dealerComecaRodada();
 
                 for(int i = 1; i <= numJogadores; i++)
                 {
@@ -153,6 +151,14 @@ public class JogaJogo
                 System.out.println(" com uma mao de valor "+auxValorMao);
             }
         }
+    }
+
+    public void dealerComecaRodada()
+    {
+        dealer = new Dealer();
+        dealer.pegaCarta(0, baralho.get(0).retornaValor());
+        baralho.get(0).cartaPuxada();
+        System.out.print("\nInicio da rodada:\n\nO Dealer vira na mesa a carta "+baralho.get(0).retornaNomeeNaipe()+"\n\nO valor da mao do Dealer e "+baralho.get(0).retornaValor()+"\n");
     }
 
     public void dealerTerminaRodada()
