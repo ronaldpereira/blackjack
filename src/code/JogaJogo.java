@@ -195,8 +195,15 @@ public class JogaJogo
         }
 
         System.out.print("\n"+jogador[id].retornaNomeJogador()+", qual a sua jogada? <hit/double/split/stand>: ");
-        reader = new BufferedReader(new InputStreamReader(System.in));
-        option = reader.readLine();
+
+        if(jogador[id].retornaIsIA())
+            option = InteligenciaArtificial.tomaDecisao(dealer.retornaValorMao(), jogador[id].retornaValorMao(), (jogador[id].retornaSaldo() >= jogador[id].retornaAposta()));
+
+        else
+        {
+            reader = new BufferedReader(new InputStreamReader(System.in));
+            option = reader.readLine();
+        }
 
         if("hit".equals(option))
         {

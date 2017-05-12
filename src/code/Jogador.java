@@ -18,32 +18,28 @@ public class Jogador
     {
         String option = "";
 
-        InteligenciaArtificial IA = new InteligenciaArtificial();
-        if(isIA)
-        {
-            System.out.print("\n"+this.nomeJogador+", qual a sua jogada? <hit/double/split/stand>: ");
-            IA.tomaDecisao();
-        }
+        System.out.print("\nVez de "+this.nomeJogador+"\n");
 
-        else
-        {
-            System.out.print("\nVez de "+this.nomeJogador+"\n");
-
-            while(!("stand".equals(option)) && !("double".equals(option)))
-                option = JogaJogo.decisao(baralho, id);
-        }
+        while(!("stand".equals(option)) && !("double".equals(option)))
+            option = JogaJogo.decisao(baralho, id);
     }
 
     public void fazAposta() throws Exception
     {
         if(this.saldo >= 10)
         {
-            while(this.aposta < 10 || this.aposta > this.saldo)
+            if(isIA)
+                this.aposta = 10.0;
+
+            else
             {
-                System.out.print("\n"+this.nomeJogador+", seu saldo atual e R$ "+this.saldo);
-                System.out.print("\n"+this.nomeJogador+", qual a sua aposta? (min. R$ 10.00): R$ ");
-                reader = new BufferedReader(new InputStreamReader(System.in));
-                this.aposta = Double.parseDouble(reader.readLine());
+                while(this.aposta < 10 || this.aposta > this.saldo)
+                {
+                    System.out.print("\n"+this.nomeJogador+", seu saldo atual e R$ "+this.saldo);
+                    System.out.print("\n"+this.nomeJogador+", qual a sua aposta? (min. R$ 10.00): R$ ");
+                    reader = new BufferedReader(new InputStreamReader(System.in));
+                    this.aposta = Double.parseDouble(reader.readLine());
+                }
             }
             diminuiSaldo(aposta);
         }
@@ -145,5 +141,10 @@ public class Jogador
     public ArrayList<Integer> retornaIDcartas()
     {
         return this.IDcartas;
+    }
+
+    public boolean retornaIsIA()
+    {
+        return this.isIA;
     }
 }
