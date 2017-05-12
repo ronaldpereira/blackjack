@@ -6,58 +6,79 @@ public class InteligenciaArtificial
 
     public static String tomaDecisao(int valorDealer, int valorMao, boolean doubleIsValid)
     {
-        if(verificaHit(valorDealer))
-        {
-            System.out.print("hit\n");
-            option = "hit";
-        }
-
-        else if(verificaStand(valorDealer))
-        {
-            System.out.print("stand\n");
-            option = "stand";
-        }
-
-        else if(verificaSplit(valorDealer))
-        {
-            System.out.print("split\n");
-            option = "split";
-        }
-
-        else if(verificaDouble(valorDealer) && doubleIsValid)
+        if(verificaDouble(valorDealer, valorMao) && doubleIsValid)
         {
             System.out.print("double\n");
             option = "double";
         }
 
+        else if(verificaHit(valorDealer, valorMao))
+        {
+            System.out.print("hit\n");
+            option = "hit";
+        }
+
+        else if(verificaStand(valorDealer, valorMao))
+        {
+            System.out.print("stand\n");
+            option = "stand";
+        }
+
+        else if(verificaSplit(valorDealer, valorMao))
+        {
+            System.out.print("split\n");
+            option = "split";
+        }
+
         return option;
     }
 
-    private static boolean verificaHit(int valorDealer)
+    private static boolean verificaDouble(int valorDealer, int valorMao)
     {
-        boolean dahit = false;
+        if(valorMao == 9 && (valorDealer == 3 || valorDealer == 4 || valorDealer == 5 || valorDealer == 6))
+            return true;
 
-        return dahit;
+        else if(valorMao == 10 && (valorDealer == 2 || valorDealer == 3 || valorDealer == 4 || valorDealer == 5 || valorDealer == 6 || valorDealer == 7 || valorDealer == 8 || valorDealer == 9))
+            return true;
+
+        else if(valorMao == 11 && (valorDealer == 2 || valorDealer == 3 || valorDealer == 4 || valorDealer == 5 || valorDealer == 6 || valorDealer == 7 || valorDealer == 8 || valorDealer == 9 || valorDealer == 10))
+            return true;
+
+        return false;
     }
 
-    private static boolean verificaStand(int valorDealer)
+    private static boolean verificaHit(int valorDealer, int valorMao)
     {
-        boolean dastand = false;
+        if(valorMao <= 11)
+            return true;
 
-        return dastand;
+        else if(valorMao == 12 && (valorDealer == 2 || valorDealer == 3))
+            return true;
+
+        else if(valorMao >= 12 && valorMao <= 16 && (valorDealer == 7 || valorDealer == 8 || valorDealer == 9 || valorDealer == 10 || valorDealer == 11))
+            return true;
+
+        return false;
     }
 
-    private static boolean verificaDouble(int valorDealer)
+    private static boolean verificaStand(int valorDealer, int valorMao)
     {
-        boolean dadouble = false;
+        if(valorMao == 12 && (valorDealer == 4 || valorDealer == 5 || valorDealer == 6))
+            return true;
 
-        return dadouble;
+        else if(valorMao >= 13 && valorMao <= 16 && (valorDealer == 2 || valorDealer == 3 || valorDealer == 4 || valorDealer == 5 || valorDealer == 6))
+            return true;
+
+        else if(valorMao >= 17)
+            return true;
+
+        return false;
     }
 
-    private static boolean verificaSplit(int valorDealer)
+    private static boolean verificaSplit(int valorDealer, int valorMao)
     {
-        boolean dasplit = false;
 
-        return dasplit;
+
+        return false;
     }
 }

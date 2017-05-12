@@ -29,7 +29,12 @@ public class Jogador
         if(this.saldo >= 10)
         {
             if(isIA)
+            {
+                System.out.print("\n"+this.nomeJogador+", seu saldo atual e R$ "+this.saldo);
+                System.out.print("\n"+this.nomeJogador+", qual a sua aposta? (min. R$ 10.00): R$ ");
                 this.aposta = 10.0;
+                System.out.print(this.aposta+"\n");
+            }
 
             else
             {
@@ -105,7 +110,7 @@ public class Jogador
 
         if("IA".equals(nome))
         {
-            this.nomeJogador = "Inteligencia Artificial "+id;
+            this.nomeJogador = "Inteligencia Artificial (Jogador "+id+")";
             this.isIA = true;
         }
 
