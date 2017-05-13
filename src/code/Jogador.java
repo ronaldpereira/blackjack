@@ -12,6 +12,7 @@ public class Jogador
     private int numDeA = 0; // Guarda o numero de As na mao do jogador
     private int valorMao = 0; // Guarda o valor da mao do jogador
     private int numCartas = 0; // Guarda o numero de cartas na mao do jogador
+    private boolean deuSplit = false; // Guarda se o jogador ja deu split na rodada
     private BufferedReader reader; // Leitor da entrada
 
     public void fazJogada(ArrayList<Baralho> baralho, int id) throws Exception
@@ -51,6 +52,22 @@ public class Jogador
 
         else
             System.out.print("\n"+this.nomeJogador+", seu saldo e insuficiente.\nSaldo atual e R$ "+this.saldo+"\n\n");
+    }
+
+    public void pegaNomeJogador(int id) throws Exception
+    {
+        System.out.print("Insira o nome do jogador "+id+" : ");
+        reader = new BufferedReader(new InputStreamReader(System.in));
+        String nome = reader.readLine();
+
+        if("IA".equals(nome))
+        {
+            this.nomeJogador = "Inteligencia Artificial (Jogador "+id+")";
+            this.isIA = true;
+        }
+
+        else
+        this.nomeJogador = nome;
     }
 
     public void daDouble()
@@ -100,22 +117,6 @@ public class Jogador
         this.numCartas = 0;
         this.numDeA = 0;
         this.aposta = 0;
-    }
-
-    public void pegaNomeJogador(int id) throws Exception
-    {
-        System.out.print("Insira o nome do jogador "+id+" : ");
-        reader = new BufferedReader(new InputStreamReader(System.in));
-        String nome = reader.readLine();
-
-        if("IA".equals(nome))
-        {
-            this.nomeJogador = "Inteligencia Artificial (Jogador "+id+")";
-            this.isIA = true;
-        }
-
-        else
-            this.nomeJogador = nome;
     }
 
     public String retornaNomeJogador()
