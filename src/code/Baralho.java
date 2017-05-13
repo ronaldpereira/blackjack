@@ -45,6 +45,11 @@ public class Baralho
         return nome+" de "+naipe;
     }
 
+    public String retornaNome()
+    {
+        return nome;
+    }
+
     public boolean retornaUso()
     {
         return this.isOnTheTable;

@@ -7,7 +7,7 @@ public class JogaJogo
     private static Jogador[] jogador; // Vetor de jogadores
     private static ArrayList<Baralho> baralho; // Array de objetos do tipo Baralho para guardar as cartas do baralho
     private static Dealer dealer; // Dealer do jogo
-    private int numJogadores; // Guarda o numero de jogadores
+    private static int numJogadores; // Guarda o numero de jogadores
     private static BufferedReader reader; // Leitor da entrada
     private static String option; // Guarda a opcao do jogador
 
@@ -61,15 +61,15 @@ public class JogaJogo
                 reader = new BufferedReader(new InputStreamReader(System.in));
                 continuar = reader.readLine();
 
-                if("sim".equals(continuar))
-                {
-                    preparaNovaRodada();
-                }
-
-                else if("nao".equals(continuar))
+                if("nao".equals(continuar))
                 {
                     imprimeSaldos();
                     break;
+                }
+
+                else
+                {
+                    preparaNovaRodada();
                 }
             }
 
@@ -200,10 +200,10 @@ public class JogaJogo
             System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
         }
 
-        System.out.print("\n"+jogador[id].retornaNomeJogador()+", qual a sua jogada? <hit/double/split/stand>: ");
+        System.out.print("\n"+jogador[id].retornaNomeJogador()+", qual a sua jogada? <hit/double/stand>: ");
 
         if(jogador[id].retornaIsIA())
-            option = InteligenciaArtificial.tomaDecisao(dealer.retornaValorMao(), jogador[id].retornaValorMao(), (jogador[id].retornaSaldo() >= jogador[id].retornaAposta()));
+            option = InteligenciaArtificial.tomaDecisao(dealer.retornaValorMao(), jogador[id].retornaValorMao(), (jogador[id].verificaDouble()));
 
         else
         {
@@ -225,7 +225,7 @@ public class JogaJogo
 
         else if("double".equals(option))
         {
-            if(jogador[id].retornaSaldo() >= jogador[id].retornaAposta())
+            if(jogador[id].verificaDouble())
             {
                 jogador[id].daDouble();
                 distribuiCartas(baralho, id);
@@ -239,11 +239,6 @@ public class JogaJogo
 
             System.out.println(jogador[id].retornaIDcartas());
             System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
-        }
-
-        else if("split".equals(option))
-        {
-
         }
 
         if(jogador[id].retornaValorMao() == 21)

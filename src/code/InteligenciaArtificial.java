@@ -24,12 +24,6 @@ public class InteligenciaArtificial
             option = "stand";
         }
 
-        else if(verificaSplit(valorDealer, valorMao))
-        {
-            System.out.print("split\n");
-            option = "split";
-        }
-
         return option;
     }
 
@@ -71,13 +65,6 @@ public class InteligenciaArtificial
 
         else if(valorMao >= 17)
             return true;
-
-        return false;
-    }
-
-    private static boolean verificaSplit(int valorDealer, int valorMao)
-    {
-
 
         return false;
     }

@@ -12,7 +12,6 @@ public class Jogador
     private int numDeA = 0; // Guarda o numero de As na mao do jogador
     private int valorMao = 0; // Guarda o valor da mao do jogador
     private int numCartas = 0; // Guarda o numero de cartas na mao do jogador
-    private boolean deuSplit = false; // Guarda se o jogador ja deu split na rodada
     private BufferedReader reader; // Leitor da entrada
 
     public void fazJogada(ArrayList<Baralho> baralho, int id) throws Exception
@@ -70,12 +69,6 @@ public class Jogador
         this.nomeJogador = nome;
     }
 
-    public void daDouble()
-    {
-        this.saldo -= this.aposta;
-        this.aposta *= 2;
-    }
-
     public void aumentaSaldo(double valor)
     {
         this.saldo += valor;
@@ -84,6 +77,17 @@ public class Jogador
     public void diminuiSaldo(double valor)
     {
         this.saldo -= valor;
+    }
+
+    public void daDouble()
+    {
+        this.saldo -= this.aposta;
+        this.aposta *= 2;
+    }
+
+    public boolean verificaDouble()
+    {
+        return (this.retornaSaldo() >= this.retornaAposta());
     }
 
     public void estourouMao()
