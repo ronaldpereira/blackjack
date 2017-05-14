@@ -1,25 +1,29 @@
-import java.util.ArrayList;
+package jogo;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import jogador.InteligenciaArtificial;
 
 public class JogaJogo
 {
-    private static Jogador[] jogador; // Vetor de jogadores
-    private static ArrayList<Baralho> baralho; // Array de objetos do tipo Baralho para guardar as cartas do baralho
-    private static Dealer dealer; // Dealer do jogo
+    private static jogador.Jogador[] jogador; // Vetor de jogadores
+    private static ArrayList<baralho.Baralho> baralho; // Array de objetos do tipo Baralho para guardar as cartas do baralho
+    private static jogador.Dealer dealer = new jogador.Dealer(); // Dealer do jogo
+    private static jogador.InteligenciaArtificial inteligenciaartificial = new jogador.InteligenciaArtificial(); // Inteligencia Artificial
     private static int numJogadores; // Guarda o numero de jogadores
     private static BufferedReader reader; // Leitor da entrada
     private static String option; // Guarda a opcao do jogador
 
     public void atribuiBaralho()
     {
-        CriaBaralho criadorBaralho = new CriaBaralho();
+        baralho.CriaBaralho criadorBaralho = new baralho.CriaBaralho();
         baralho = criadorBaralho.criaeEmbaralhaBaralho();
     }
 
     public void jogada() throws Exception
     {
-        MenuInterativo menu = new MenuInterativo();
+        menu.MenuInterativo menu = new menu.MenuInterativo();
         jogador = menu.executaMenu();
         numJogadores = menu.retornaNumJogadores();
         atribuiBaralho();
@@ -155,7 +159,6 @@ public class JogaJogo
 
     public void dealerComecaRodada()
     {
-        dealer = new Dealer();
         dealer.pegaCarta(0, baralho.get(0).retornaValor());
         baralho.get(0).cartaPuxada();
         System.out.print("\nInicio da rodada:\n\nO Dealer vira na mesa a carta "+baralho.get(0).retornaNomeeNaipe()+"\n\nO valor da mao do Dealer e "+baralho.get(0).retornaValor()+"\n");
@@ -191,7 +194,7 @@ public class JogaJogo
             baralho.remove(0);
     }
 
-    public static String decisao(ArrayList<Baralho> baralho, int id) throws Exception
+    public static String decisao(ArrayList<baralho.Baralho> baralho, int id) throws Exception
     {
         if(jogador[id].retornaNumCartas() == 0)
         {
@@ -203,7 +206,7 @@ public class JogaJogo
         System.out.print("\n"+jogador[id].retornaNomeJogador()+", qual a sua jogada? <hit/double/stand>: ");
 
         if(jogador[id].retornaIsIA())
-            option = InteligenciaArtificial.tomaDecisao(dealer.retornaValorMao(), jogador[id].retornaValorMao(), (jogador[id].verificaDouble()));
+            option = inteligenciaartificial.tomaDecisao(dealer.retornaValorMao(), jogador[id].retornaValorMao(), (jogador[id].verificaDouble()));
 
         else
         {
@@ -257,7 +260,7 @@ public class JogaJogo
         return option;
     }
 
-    public static void distribuiCartas(ArrayList<Baralho> baralho, int id)
+    public static void distribuiCartas(ArrayList<baralho.Baralho> baralho, int id)
     {
         for(int i = 1; ; i++)
         {

@@ -1,10 +1,12 @@
+package menu;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class MenuInterativo
 {
-    private Jogador[] jogador; // Vetor de jogadores
-    private int numJogadores = 7; // Guarda o numero de jogadores
+    private jogador.Jogador[] jogador; // Vetor de jogadores
+    private int numJogadores = 0; // Guarda o numero de jogadores
     private BufferedReader reader; // Leitor da entrada
 
     public void apresentacao()
@@ -15,7 +17,7 @@ public class MenuInterativo
 
     public void pegaNumJogadores() throws Exception
     {
-        while(numJogadores > 6)
+        while(numJogadores > 6 || numJogadores <= 0)
         {
             System.out.print("Insira o numero de jogadores (max. 6 jogadores): ");
             reader = new BufferedReader(new InputStreamReader(System.in));
@@ -28,10 +30,10 @@ public class MenuInterativo
 
     public void criaJogadores(int id) throws Exception
     {
-        jogador = new Jogador[numJogadores+1];
+        jogador = new jogador.Jogador[numJogadores+1];
         for(int i = 1; i <= numJogadores; i++)
         {
-            jogador[i] = new Jogador();
+            jogador[i] = new jogador.Jogador();
             jogador[i].pegaNomeJogador(i);
         }
     }
@@ -52,7 +54,7 @@ public class MenuInterativo
         }
     }
 
-    public Jogador[] executaMenu() throws Exception
+    public jogador.Jogador[] executaMenu() throws Exception
     {
         this.apresentacao();
         this.pegaNumJogadores();

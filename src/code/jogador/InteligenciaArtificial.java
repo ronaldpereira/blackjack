@@ -1,10 +1,12 @@
+package jogador;
+
 import java.util.ArrayList;
 
 public class InteligenciaArtificial
 {
-    private static String option;
+    private String option;
 
-    public static String tomaDecisao(int valorDealer, int valorMao, boolean doubleIsValid)
+    public String tomaDecisao(int valorDealer, int valorMao, boolean doubleIsValid)
     {
         if(verificaDouble(valorDealer, valorMao) && doubleIsValid)
         {
@@ -27,7 +29,7 @@ public class InteligenciaArtificial
         return option;
     }
 
-    private static boolean verificaDouble(int valorDealer, int valorMao)
+    private boolean verificaDouble(int valorDealer, int valorMao)
     {
         if(valorMao == 9 && (valorDealer == 3 || valorDealer == 4 || valorDealer == 5 || valorDealer == 6))
             return true;
@@ -41,7 +43,7 @@ public class InteligenciaArtificial
         return false;
     }
 
-    private static boolean verificaHit(int valorDealer, int valorMao)
+    private boolean verificaHit(int valorDealer, int valorMao)
     {
         if(valorMao <= 11)
             return true;
@@ -55,7 +57,7 @@ public class InteligenciaArtificial
         return false;
     }
 
-    private static boolean verificaStand(int valorDealer, int valorMao)
+    private boolean verificaStand(int valorDealer, int valorMao)
     {
         if(valorMao == 12 && (valorDealer == 4 || valorDealer == 5 || valorDealer == 6))
             return true;

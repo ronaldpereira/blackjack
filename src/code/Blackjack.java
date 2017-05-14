@@ -5,7 +5,7 @@ public class Blackjack
 {
     public static void main(String[] args) throws Exception
     {
-        JogaJogo jogajogo = new JogaJogo();
+        jogo.JogaJogo jogajogo = new jogo.JogaJogo();
         jogajogo.jogada();
     }
 }

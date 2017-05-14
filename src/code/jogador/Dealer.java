@@ -1,3 +1,5 @@
+package jogador;
+
 import java.util.ArrayList;
 
 public class Dealer

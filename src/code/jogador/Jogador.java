@@ -1,3 +1,5 @@
+package jogador;
+
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,14 +16,14 @@ public class Jogador
     private int numCartas = 0; // Guarda o numero de cartas na mao do jogador
     private BufferedReader reader; // Leitor da entrada
 
-    public void fazJogada(ArrayList<Baralho> baralho, int id) throws Exception
+    public void fazJogada(ArrayList<baralho.Baralho> baralho, int id) throws Exception
     {
         String option = "";
 
         System.out.print("\nVez de "+this.nomeJogador+"\n");
 
         while(!("stand".equals(option)) && !("double".equals(option)))
-            option = JogaJogo.decisao(baralho, id);
+            option = jogo.JogaJogo.decisao(baralho, id);
     }
 
     public void fazAposta() throws Exception

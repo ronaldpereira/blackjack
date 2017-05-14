@@ -1,11 +1,10 @@
 all:
+	javac */*.java
 	javac *.java
 
 run:
 	java Blackjack
 
 clean:
+	rm -rf */*.class
 	rm -rf *.class
-
-test:
-	make all && make run && make clean

@@ -1,3 +1,5 @@
+package baralho;
+
 public class Baralho
 {
     private String nome; // Guarda o nome da carta
