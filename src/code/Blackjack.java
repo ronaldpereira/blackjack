@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class Blackjack // Classe principal do jogo
 {
     public static void main(String[] args) throws Exception
