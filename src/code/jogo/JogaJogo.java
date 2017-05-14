@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import jogador.InteligenciaArtificial;
 
-public class JogaJogo
+public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
 {
     private static jogador.Jogador[] jogador; // Vetor de jogadores
     private static ArrayList<baralho.Baralho> baralho; // Array de objetos do tipo Baralho para guardar as cartas do baralho
@@ -15,16 +15,16 @@ public class JogaJogo
     private static BufferedReader reader; // Leitor da entrada
     private static String option; // Guarda a opcao do jogador
 
-    public void atribuiBaralho()
+    public void atribuiBaralho() // Cria e atribui um novo baralho
     {
         baralho.CriaBaralho criadorBaralho = new baralho.CriaBaralho();
-        baralho = criadorBaralho.criaeEmbaralhaBaralho();
+        baralho = criadorBaralho.criaeEmbaralhaBaralho(); // Metodo que cria e embaralha o baralho
     }
 
     public void jogo() throws Exception
     {
         menu.MenuInterativo menu = new menu.MenuInterativo();
-        jogador = menu.executaMenu();
+        jogador = menu.executaMenu(); // Executa o menu interativo
         numJogadores = menu.retornaNumJogadores();
         atribuiBaralho();
 
@@ -178,7 +178,6 @@ public class JogaJogo
                     break;
                 }
             }
-            System.out.println(dealer.retornaIDcartas());
             System.out.println("O valor da mao do dealer e "+dealer.retornaValorMao());
         }
     }
@@ -199,7 +198,6 @@ public class JogaJogo
         if(jogador[id].retornaNumCartas() == 0)
         {
             distribuiCartas(baralho, id);
-            System.out.println(jogador[id].retornaIDcartas());
             System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
         }
 
@@ -217,7 +215,6 @@ public class JogaJogo
         if("hit".equals(option))
         {
             distribuiCartas(baralho, id);
-            System.out.println(jogador[id].retornaIDcartas());
             System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
         }
 
@@ -240,7 +237,6 @@ public class JogaJogo
                 option = "";
             }
 
-            System.out.println(jogador[id].retornaIDcartas());
             System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
         }
 
