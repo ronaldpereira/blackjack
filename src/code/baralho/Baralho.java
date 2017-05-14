@@ -7,7 +7,7 @@ public class Baralho // Classe que representa o baralho inteiro, contendo as atr
     private int valor; // Guarda o valor relativo a carta
     private boolean isOnTheTable = false; // Flag para marcar se a carta esta na mesa ou nao
 
-    public void criaCarta(String nome, String naipe) // Metodo que realiza a criacao de uma nova carta no baralho
+    void criaCarta(String nome, String naipe) // Metodo que realiza a criacao de uma nova carta no baralho somente para o pacote baralho
     {
         this.nome = nome;
         this.naipe = naipe;

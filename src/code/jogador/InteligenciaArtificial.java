@@ -2,11 +2,11 @@ package jogador;
 
 import java.util.ArrayList;
 
-public class InteligenciaArtificial
+public class InteligenciaArtificial // Classe que representa uma Inteligencia Artificial
 {
-    private String option;
+    private String option; // String para guardar a opcao do jogador
 
-    public String tomaDecisao(int valorDealer, int valorMao, boolean doubleIsValid)
+    public String tomaDecisao(int valorDealer, int valorMao, boolean doubleIsValid) // Metodo que realiza a tomada de decisao para a IA
     {
         if(verificaDouble(valorDealer, valorMao) && doubleIsValid)
         {
@@ -29,7 +29,7 @@ public class InteligenciaArtificial
         return option;
     }
 
-    private boolean verificaDouble(int valorDealer, int valorMao)
+    private boolean verificaDouble(int valorDealer, int valorMao) // Metodo que realiza a verificacao se a melhor opcao a se tomar e um double
     {
         if(valorMao == 9 && (valorDealer == 3 || valorDealer == 4 || valorDealer == 5 || valorDealer == 6))
             return true;
@@ -43,7 +43,7 @@ public class InteligenciaArtificial
         return false;
     }
 
-    private boolean verificaHit(int valorDealer, int valorMao)
+    private boolean verificaHit(int valorDealer, int valorMao) // Metodo que realiza a verificacao se a melhor opcao a se tomar e um hit
     {
         if(valorMao <= 11)
             return true;
@@ -57,7 +57,7 @@ public class InteligenciaArtificial
         return false;
     }
 
-    private boolean verificaStand(int valorDealer, int valorMao)
+    private boolean verificaStand(int valorDealer, int valorMao) // Metodo que realiza a verificacao se a melhor opcao a se tomar e um stand
     {
         if(valorMao == 12 && (valorDealer == 4 || valorDealer == 5 || valorDealer == 6))
             return true;
