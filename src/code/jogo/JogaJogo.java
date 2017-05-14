@@ -21,7 +21,7 @@ public class JogaJogo
         baralho = criadorBaralho.criaeEmbaralhaBaralho();
     }
 
-    public void jogada() throws Exception
+    public void jogo() throws Exception
     {
         menu.MenuInterativo menu = new menu.MenuInterativo();
         jogador = menu.executaMenu();
