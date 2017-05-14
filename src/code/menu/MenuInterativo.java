@@ -66,7 +66,7 @@ public class MenuInterativo // Classe que representa o menu interativo do jogo
         }
     }
 
-    public int retornaNumJogadores()
+    public int retornaNumJogadores() // Metodo que retorna o numero de jogadores
     {
         return this.numJogadores;
     }
