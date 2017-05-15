@@ -44,7 +44,7 @@ public class Baralho // Classe que representa o baralho inteiro, contendo as atr
 
     public String retornaNomeeNaipe() // Metodo que retorna o nome e o naipe da carta concatenados
     {
-        return nome+" "+naipe;
+        return nome+naipe;
     }
 
     public String retornaNome() // Metodo que retorna o nome da carta
