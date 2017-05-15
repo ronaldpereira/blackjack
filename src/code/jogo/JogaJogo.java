@@ -86,7 +86,15 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
         if(jogador[id].retornaNumCartas() == 0)
         {
             distribuiCartas(baralho, id);
+            distribuiCartas(baralho, id);
             System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
+
+            if(jogador[id].retornaValorMao() == 21)
+            {
+                System.out.print("BlackJack de "+jogador[id].retornaNomeJogador()+"!"+"\n\n");
+                System.out.print("O valor final da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n\n");
+                return "stand";
+            }
         }
 
         System.out.print("\n"+jogador[id].retornaNomeJogador()+", qual a sua jogada? <hit/double/stand>: ");
