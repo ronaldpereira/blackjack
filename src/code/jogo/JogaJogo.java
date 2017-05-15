@@ -162,7 +162,7 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
         System.out.print("\n\nSaldo final dos jogadores:\n");
 
         for(int i = 1; i <= numJogadores; i++)
-            System.out.println(jogador[i].retornaNomeJogador()+" : R$ "+jogador[i].retornaSaldo());
+            System.out.format("%s : R$ %.2f\n", jogador[i].retornaNomeJogador(), jogador[i].retornaSaldo());
 
         System.out.print("\n\nObrigado por jogar JackBlack 2017/1!\n");
     }
@@ -210,20 +210,20 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
 
                 if(jogador[i].retornaValorMao() > maoDealer)
                 {
-                    System.out.print("\n"+jogador[i].retornaNomeJogador()+" ganhou R$ "+jogador[i].retornaAposta()*2);
+                    System.out.format("\n%s ganhou R$ %.2f", jogador[i].retornaNomeJogador(), jogador[i].retornaAposta()*2);
                     jogador[i].aumentaSaldo(jogador[i].retornaAposta()*2);
                 }
 
                 else if(jogador[i].retornaValorMao() == maoDealer)
                 {
-                    System.out.print("\nO Dealer devolveu R$ "+jogador[i].retornaAposta()+" da aposta para "+jogador[i].retornaNomeJogador());
+                    System.out.format("\nO Dealer devolveu R$ %.2f da aposta para %s", jogador[i].retornaAposta(), jogador[i].retornaNomeJogador());
                     jogador[i].aumentaSaldo(jogador[i].retornaAposta());
                 }
 
                 else
                     System.out.print("\n"+jogador[i].retornaNomeJogador()+" perdeu");
 
-                System.out.println(" com uma mao de valor "+auxValorMao);
+                System.out.print(" com uma mao de valor "+auxValorMao+"\n");
             }
         }
     }

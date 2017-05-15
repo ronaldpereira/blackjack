@@ -33,17 +33,17 @@ public class Jogador // Classe que representa um jogador e todas as suas interac
         {
             if(isIA)
             {
-                System.out.print("\n"+this.nomeJogador+", seu saldo atual e R$ "+this.saldo);
+                System.out.format("\n%s, seu saldo atual e R$ %.2f", this.nomeJogador, this.saldo);
                 System.out.print("\n"+this.nomeJogador+", qual a sua aposta? (min. R$ 10.00): R$ ");
                 this.aposta = 10.0; // Se o jogador for uma IA, a aposta sempre sera minima
-                System.out.print(this.aposta+"\n");
+                System.out.format("%.2f\n", this.aposta);
             }
 
             else
             {
                 while(this.aposta < 10 || this.aposta > this.saldo)
                 {
-                    System.out.print("\n"+this.nomeJogador+", seu saldo atual e R$ "+this.saldo);
+                    System.out.format("\n%s, seu saldo atual e R$ %.2f", this.nomeJogador, this.saldo);
                     System.out.print("\n"+this.nomeJogador+", qual a sua aposta? (min. R$ 10.00): R$ ");
                     reader = new BufferedReader(new InputStreamReader(System.in));
                     this.aposta = Double.parseDouble(reader.readLine());
