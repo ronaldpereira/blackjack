@@ -136,7 +136,7 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
                 option = "";
             }
             
-            System.out.print("\nO valor final da mao e: "+jogador[id].retornaValorMao()+"\n\n");
+            System.out.print("\nO valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
         }
 
         if(jogador[id].retornaValorMao() == 21)
