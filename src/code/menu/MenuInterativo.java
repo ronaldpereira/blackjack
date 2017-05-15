@@ -20,8 +20,12 @@ public class MenuInterativo // Classe que representa o menu interativo do jogo
 
     public void apresentacao() // Metodo que realiza a apresentacao do jogo
     {
-        System.out.println("Bem-vindo ao JackBlack 2017/1");
-        System.out.println("Autores: Marina Monteiro Moreira e Ronald Davi Rodrigues Pereira");
+        
+        System.out.println("\n\n\n  ━━━━━━━━━━━━━━━━");
+        System.out.println("┃   Bem-vindo ao   ┃");
+        System.out.println("┃ JackBlack 2017/1 ┃");
+        System.out.println("  ━━━━━━━━━━━━━━━━");
+        System.out.println("\n\nAutores: Marina Moreira e Ronald Pereira\n\n");
     }
 
     public void pegaNumJogadores() // Metodo que realiza a leitura de quantos jogadores vao jogar o jogo

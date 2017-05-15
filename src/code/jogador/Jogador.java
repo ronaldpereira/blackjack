@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 public class Jogador // Classe que representa um jogador e todas as suas interacoes com o jogo
 {
+    private ArrayList<Integer> IDcartas = new ArrayList<Integer>(); // Array de inteiros para guardar os IDs das cartas da mao do jogador
     private String nomeJogador; // String para guardar o nome do jogador
     private boolean isIA = false; // Flag para verificar se o jogador e uma inteligencia artificial
     private double saldo; // Guarda o saldo restante do jogador
@@ -20,7 +21,7 @@ public class Jogador // Classe que representa um jogador e todas as suas interac
     {
         String option = "";
 
-        System.out.print("\nVez de "+this.nomeJogador+"\n");
+        System.out.print("\n--------------- Vez de "+this.nomeJogador+" ---------------\n\n");
 
         while(!("stand".equals(option)) && !("double".equals(option)))
             option = jogo.JogaJogo.decisao(baralho, id);
@@ -101,7 +102,8 @@ public class Jogador // Classe que representa um jogador e todas as suas interac
 
     public void pegaCarta(int id, int valor) // Metodo que realiza atribuicao do valor da carta ao jogador, tratando o valor duplo da carta A
     {
-        numCartas++;
+        this.IDcartas.add(id);
+        this.numCartas++;
         if(valor == 11)
         {
             this.valorMao += valor;
@@ -113,16 +115,25 @@ public class Jogador // Classe que representa um jogador e todas as suas interac
         if(this.valorMao > 21 && numDeA > 0)
         {
             this.valorMao -= numDeA * 10;
-            numDeA = 0;
+            this.numDeA = 0;
         }
     }
 
     public void descartaMao() // Metodo que realiza o descarte da mao atual do jogador
     {
+        this.IDcartas.clear();
         this.valorMao = 0;
         this.numCartas = 0;
         this.numDeA = 0;
         this.aposta = 0;
+    }
+    
+    public void imprimeMao(ArrayList<baralho.Baralho> baralho)
+    {
+        System.out.print("\nA mao de "+nomeJogador+" e:\n");
+        for(Integer carta : IDcartas)
+            System.out.print(" | "+baralho.get(carta).retornaNomeeNaipe()+" | ");
+        System.out.print("\n\n");
     }
 
     public String retornaNomeJogador() // Metodo que realiza o retorno do nome do jogador
@@ -148,6 +159,11 @@ public class Jogador // Classe que representa um jogador e todas as suas interac
     public int retornaNumCartas() // Metodo que realiza o retorno do numero de cartas na mao do jogador
     {
         return this.numCartas;
+    }
+    
+    public ArrayList<Integer> retornaIDcartas()
+    {
+        return this.IDcartas;
     }
 
     public boolean retornaIsIA() // Metodo que realiza o retorno da flag para verificar se um jogador e uma IA ou jogador fisico

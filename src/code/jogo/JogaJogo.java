@@ -49,13 +49,13 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
 
                 if(verificaMaoJogadores()) // Verifica se pelo menos um jogador possui a soma de sua mao <= 21
                 {
-                    System.out.print("\nVez do Dealer\n");
+                    
                     dealerTerminaRodada(); // Dealer termina a rodada
                 }
 
                 distribuiPremios(); // Metodo que distribui os premios da rodada atual
 
-                System.out.print("\nDeseja jogar mais uma rodada? <sim, nao>: ");
+                System.out.print("\n\n\nDeseja jogar mais uma rodada? <sim / nao>: ");
                 reader = new BufferedReader(new InputStreamReader(System.in));
                 continuar = reader.readLine();
 
@@ -66,9 +66,7 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
                 }
 
                 else
-                {
                     preparaNovaRodada(); // Preparacao para uma nova rodada
-                }
             }
 
             else
@@ -87,6 +85,8 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
         {
             distribuiCartas(baralho, id);
             distribuiCartas(baralho, id);
+            
+            jogador[id].imprimeMao(baralho);
             System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
 
             if(jogador[id].retornaValorMao() == 21)
@@ -97,10 +97,10 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
             }
         }
 
-        System.out.print("\n"+jogador[id].retornaNomeJogador()+", qual a sua jogada? <hit/double/stand>: ");
+        System.out.print("\n"+jogador[id].retornaNomeJogador()+", qual a sua jogada? <hit / double / stand> : ");
 
         if(jogador[id].retornaIsIA())
-        option = inteligenciaartificial.tomaDecisao(dealer.retornaValorMao(), jogador[id].retornaValorMao(), (jogador[id].verificaDouble()));
+            option = inteligenciaartificial.tomaDecisao(dealer.retornaValorMao(), jogador[id].retornaValorMao(), (jogador[id].verificaDouble()));
 
         else
         {
@@ -111,12 +111,15 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
         if("hit".equals(option))
         {
             distribuiCartas(baralho, id);
+            
+            jogador[id].imprimeMao(baralho);                
             System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
         }
 
         else if("stand".equals(option))
         {
-            System.out.print("O valor final da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n\n");
+            jogador[id].imprimeMao(baralho);
+            System.out.print("O valor final da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n");
         }
 
         else if("double".equals(option))
@@ -132,19 +135,19 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
                 System.out.println("\n"+jogador[id].retornaNomeJogador()+", seu saldo e insuficiente para dar double");
                 option = "";
             }
-
-            System.out.print("O valor da mao e: "+jogador[id].retornaValorMao()+"\n\n");
+            
+            System.out.print("\nO valor final da mao e: "+jogador[id].retornaValorMao()+"\n\n");
         }
 
         if(jogador[id].retornaValorMao() == 21)
         {
-            System.out.print("O valor final da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n\n");
+            System.out.print("O valor final da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n");
             option = "stand";
         }
 
         else if(jogador[id].retornaValorMao() > 21)
         {
-            System.out.print("Perdeu! O valor final da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n\n");
+            System.out.print("Perdeu! O valor final da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n");
             option = "stand";
         }
 
@@ -159,12 +162,12 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
 
     private void imprimeSaldos() // Metodo que realiza a impressao dos saldos dos jogadores
     {
-        System.out.print("\n\nSaldo final dos jogadores:\n");
+        System.out.print("\n\n--------------- Saldo final dos jogadores ---------------\n\n");
 
         for(int i = 1; i <= numJogadores; i++)
-            System.out.format("%s : R$ %.2f\n", jogador[i].retornaNomeJogador(), jogador[i].retornaSaldo());
+            System.out.format("%s : R$ %.2f\n\n", jogador[i].retornaNomeJogador(), jogador[i].retornaSaldo());
 
-        System.out.print("\n\nObrigado por jogar JackBlack 2017/1!\n");
+        System.out.print("\n\nObrigado por jogar JackBlack 2017/1!\n\n");
     }
 
     private boolean verificaMaoJogadores() // Metodo que realiza a verificacao da soma da mao dos jogadores
@@ -197,7 +200,7 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
         if(maoDealer > 21) // Se o dealer estourou a mao, todos os jogadores ganham
             maoDealer = 0;
 
-        System.out.print("\n\nResultados da rodada:\n");
+        System.out.print("\n--------------- Resultados da rodada ---------------\n");
 
         for(int i = 1; i <= numJogadores; i++)
         {
@@ -232,11 +235,15 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
     {
         dealer.pegaCarta(0, baralho.get(0).retornaValor());
         baralho.get(0).cartaPuxada();
-        System.out.print("\nInicio da rodada:\n\nO Dealer vira na mesa a carta "+baralho.get(0).retornaNomeeNaipe()+"\n\nO valor da carta do Dealer e "+baralho.get(0).retornaValor()+"\n");
+        System.out.print("\n--------------- Inicio da rodada ---------------\n\nO Dealer vira na mesa a carta "+baralho.get(0).retornaNomeeNaipe()+"\n");
+        dealer.imprimeMao(baralho);
+        System.out.print("O valor da carta do Dealer e "+baralho.get(0).retornaValor()+"\n");
     }
 
     private void dealerTerminaRodada()  // Metodo que realiza o restante das puxadas de cartas do Dealer do baralho e termina a rodada
     {
+        System.out.print("\n--------------- Vez do Dealer ---------------\n\n");
+        
         for(int i = 1; ; i++)
         {
             if(!(baralho.get(i).retornaUso())) // Carta nao esta na mesa
@@ -244,10 +251,11 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
                 baralho.get(i).cartaPuxada();
                 dealer.pegaCarta(i, baralho.get(i).retornaValor());
                 System.out.println("O dealer vira a outra carta: "+baralho.get(i).retornaNomeeNaipe());
+                dealer.imprimeMao(baralho);
                 break;
             }
         }
-        System.out.println("O valor da mao do dealer e "+dealer.retornaValorMao());
+        System.out.println("O valor da mao do dealer e "+dealer.retornaValorMao()+"\n");
         
         while(dealer.retornaValorMao() < 17)
         {
@@ -258,10 +266,11 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
                     baralho.get(i).cartaPuxada();
                     dealer.pegaCarta(i, baralho.get(i).retornaValor());
                     System.out.println("Foi puxada a carta: "+baralho.get(i).retornaNomeeNaipe());
+                    dealer.imprimeMao(baralho);
                     break;
                 }
             }
-            System.out.println("O valor da mao do dealer e "+dealer.retornaValorMao());
+            System.out.println("O valor da mao do dealer e "+dealer.retornaValorMao()+"\n");
         }
     }
 
