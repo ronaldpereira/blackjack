@@ -16,12 +16,12 @@ public class Baralho // Classe que representa o baralho inteiro, contendo as atr
 
     private void atribuiValor(String nome) // Metodo que realiza a atribuicao do valor a carta
     {
-        if("As".equals(nome))
+        if("A".equals(nome))
         {
             this.valor = 11;
         }
 
-        else if("Valete".equals(nome) || "Rainha".equals(nome) || "Rei".equals(nome))
+        else if("J".equals(nome) || "Q".equals(nome) || "K".equals(nome))
         {
             this.valor = 10;
         }
@@ -44,7 +44,7 @@ public class Baralho // Classe que representa o baralho inteiro, contendo as atr
 
     public String retornaNomeeNaipe() // Metodo que retorna o nome e o naipe da carta concatenados
     {
-        return nome+" de "+naipe;
+        return nome+" "+naipe;
     }
 
     public String retornaNome() // Metodo que retorna o nome da carta

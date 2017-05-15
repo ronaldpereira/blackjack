@@ -116,7 +116,7 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
 
         else if("stand".equals(option))
         {
-            System.out.print("O valor da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n\n");
+            System.out.print("O valor final da mao de "+jogador[id].retornaNomeJogador()+" e "+jogador[id].retornaValorMao()+"\n\n");
         }
 
         else if("double".equals(option))
@@ -233,11 +233,23 @@ public class JogaJogo // Classe que realiza toda o controle da execucao do jogo
     {
         dealer.pegaCarta(0, baralho.get(0).retornaValor());
         baralho.get(0).cartaPuxada();
-        System.out.print("\nInicio da rodada:\n\nO Dealer vira na mesa a carta "+baralho.get(0).retornaNomeeNaipe()+"\n\nO valor da mao do Dealer e "+baralho.get(0).retornaValor()+"\n");
+        System.out.print("\nInicio da rodada:\n\nO Dealer vira na mesa a carta "+baralho.get(0).retornaNomeeNaipe()+"\n\nO valor da carta do Dealer e "+baralho.get(0).retornaValor()+"\n");
     }
 
     private void dealerTerminaRodada()  // Metodo que realiza o restante das puxadas de cartas do Dealer do baralho e termina a rodada
     {
+        for(int i = 1; ; i++)
+        {
+            if(!(baralho.get(i).retornaUso())) // Carta nao esta na mesa
+            {
+                baralho.get(i).cartaPuxada();
+                dealer.pegaCarta(i, baralho.get(i).retornaValor());
+                System.out.println("O dealer vira a outra carta: "+baralho.get(i).retornaNomeeNaipe());
+                break;
+            }
+        }
+        System.out.println("O valor da mao do dealer e "+dealer.retornaValorMao());
+        
         while(dealer.retornaValorMao() < 17)
         {
             for(int i = 1; ; i++)

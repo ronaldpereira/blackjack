@@ -22,28 +22,28 @@ public class CriaBaralho // Classe que realiza as operacoes necessarias para cri
                 for(int naipe = 1; naipe <= 4; naipe++) // Com 4 naipes para cada carta
                 {
                     if(naipe == 1)
-                        naipedacarta = "Paus";
+                        naipedacarta = "♣";
 
                     else if(naipe == 2)
-                        naipedacarta = "Copas";
+                        naipedacarta = "♥";
 
                     else if(naipe == 3)
-                        naipedacarta = "Espadas";
+                        naipedacarta = "♠";
 
                     else
-                        naipedacarta = "Ouros";
+                        naipedacarta = "♦";
 
                     if(carta == 1)
-                        nomedacarta = "As";
+                        nomedacarta = "A";
 
                     else if(carta == 11)
-                        nomedacarta = "Valete";
+                        nomedacarta = "J";
 
                     else if(carta == 12)
-                        nomedacarta = "Rainha";
+                        nomedacarta = "Q";
 
                     else if(carta == 13)
-                        nomedacarta = "Rei";
+                        nomedacarta = "K";
 
                     else
                         nomedacarta = Integer.toString(carta);
