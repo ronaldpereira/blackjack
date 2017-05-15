@@ -36,6 +36,7 @@ public class MenuInterativo // Classe que representa o menu interativo do jogo
             System.out.print("Insira o numero de jogadores (max. 6 jogadores): ");
             reader = new BufferedReader(new InputStreamReader(System.in));
             numJogadores = Integer.parseInt(reader.readLine());
+            System.out.print("\nPara atribuir uma Inteligencia Artificial a um jogador, digite IA no nome do jogador\n\n");
         }
 
         criaJogadores(numJogadores);
