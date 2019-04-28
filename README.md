@@ -4,8 +4,8 @@ Gambling Card game "Blackjack" applicatioon, using Object-Oriented Programming c
 
 ## How to execute
 
-```
-cd src/
-make
+```sh
+$cd src/
+$make
 ```
 
