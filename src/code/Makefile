@@ -1,4 +1,6 @@
-all:
+all: compile run
+
+compile:
 	javac */*.java
 	javac *.java
 
