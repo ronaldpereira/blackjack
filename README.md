@@ -1,4 +1,11 @@
-# Trabalho Prático 2 de Programação Modular:
+# Blackjack
 
-Jogo de cartas "Blackjack", utilizando os conceitos de Programação Orientada a Objetos em Java.
+Gambling Card game "Blackjack" applicatioon, using Object-Oriented Programming concepts in Java language.
+
+## How to execute
+
+```
+cd src/
+make
+```
 
